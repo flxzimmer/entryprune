@@ -1,4 +1,4 @@
-# relchanet
+# RelChaNet
 
 An algorithm to select features in neural networks based on rotating input layer neurons. The metric used for pruning measures relative change in first layer weights across a few mini-batches. It is described in the paper "RelChaNet: Neural Network Feature Selection using Relative Change Scores" (https://arxiv.org/abs/).
 
