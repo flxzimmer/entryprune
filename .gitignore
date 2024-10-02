@@ -1,0 +1,8 @@
+experiments/data/*
+experiments/results/*
+experiments/__pycache__/
+*.egg-info/
+build
+archive
+notes.txt
+score.svg
