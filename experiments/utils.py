@@ -5,6 +5,7 @@ from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 import os
 import gzip
+from torchvision import datasets, transforms
 
 def load_data(dataset_name):
 
@@ -130,8 +131,28 @@ def load_data(dataset_name):
         mat = scipy.io.loadmat('data/arcene.mat', squeeze_me=True)
         X = mat["X"]
         y = mat["Y"]
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)    
-            
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)
+
+    elif dataset_name == "CIFAR-10":
+        # from https://pytorch.org/vision/main/generated/torchvision.datasets.CIFAR10.html
+        transform = transforms.Compose([transforms.ToTensor()])
+        train_dataset = datasets.CIFAR10(train=True, transform=transform)
+        test_dataset = datasets.CIFAR10(train=False, transform=transform)
+        X_train = np.array([np.array(img).flatten() for img, _ in train_dataset])
+        y_train = np.array([label for _, label in train_dataset])
+        X_test = np.array([np.array(img).flatten() for img, _ in test_dataset])
+        y_test = np.array([label for _, label in test_dataset])
+
+    elif dataset_name == "CIFAR-100":
+        # from https://pytorch.org/vision/main/generated/torchvision.datasets.CIFAR100.html
+        transform = transforms.Compose([transforms.ToTensor()])
+        train_dataset = datasets.CIFAR100(train=True, transform=transform)
+        test_dataset = datasets.CIFAR100(train=False, transform=transform)
+        X_train = np.array([np.array(img).flatten() for img, _ in train_dataset])
+        y_train = np.array([label for _, label in train_dataset])
+        X_test = np.array([np.array(img).flatten() for img, _ in test_dataset])
+        y_test = np.array([label for _, label in test_dataset])
+
     if dataset_name == "BASEHOCK":
         X = preprocessing.StandardScaler().fit_transform(np.concatenate((X_train, X_test)))
         X_train = X[: y_train.shape[0]]

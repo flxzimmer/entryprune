@@ -17,8 +17,7 @@ import os
 
 os.makedirs('results', exist_ok=True)
 
-# datasets = ['coil20', 'MNIST', 'Fashion-MNIST','USPS', 'isolet', 'har', 'BASEHOCK', 'Prostate_GE', 'arcene', 'SMK', 'GLA-BRA-180']
-datasets = ['coil20', 'MNIST', 'Fashion-MNIST','USPS', 'isolet', 'har', 'Prostate_GE', 'arcene', 'GLA-BRA-180'] # exclude datasets with disagreeing accuracy for all features
+datasets = ['coil20', 'MNIST', 'Fashion-MNIST','USPS', 'isolet', 'har', 'BASEHOCK', 'Prostate_GE', 'arcene', 'SMK', 'GLA-BRA-180',"CIFAR-10","CIFAR-100"]
 
 
 methods_wide = {
