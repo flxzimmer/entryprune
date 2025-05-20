@@ -2,7 +2,7 @@
 # results are saved in "experiments/results/main.csv"
 
 from utils import load_data
-from relchanet_models import *
+from entryprune_models import *
 
 import torch
 import numpy as np
@@ -21,11 +21,11 @@ datasets = ['coil20', 'MNIST', 'Fashion-MNIST','USPS', 'isolet', 'har', 'BASEHOC
 
 
 methods_wide = {
-    'RCN_wide': fit_wrapper(stopping = "validation", stopping_hyperpar = 100, perc = .5,switch = 5),
+    'EP_wide': fit_wrapper(stopping = "validation", stopping_hyperpar = 100, perc = .5,switch = 5),
     'flex_wide': fit_flex_wrapper(perc = .5,switch = 5),
 }
 methods_long = {
-    'RCN_long': fit_wrapper(stopping = "validation", stopping_hyperpar = 100, perc = .2,switch = 100),
+    'EP_long': fit_wrapper(stopping = "validation", stopping_hyperpar = 100, perc = .2,switch = 100),
     'flex_long': fit_flex_wrapper(perc = .2,switch = 100),
 }
 

@@ -5,7 +5,7 @@ import torch.nn as nn
 import numpy as np
 
 
-class BaseRCN:
+class BaseEP:
     def __init__(self, relevant, epochs=200, patience=None, lr=1e-3, n_hidden=10, shrink=False, batch_size=None, patience_ident=None,switch_interval = 1,n_updates = None,final_netsize = None, method = "gradients",candidate_perc = None):
 
         self.relevant = relevant
@@ -39,7 +39,7 @@ class BaseRCN:
 
 
     
-    def run_base_rcn(self,X,y,X_val,y_val):
+    def run_base_ep(self,X,y,X_val,y_val):
 
         ## Preparation ## 
         self.device = torch.device(f'cuda:{torch.cuda.current_device()}' if torch.cuda.is_available() else 'cpu') 
@@ -386,9 +386,9 @@ class BaseRCN:
 
 
 # TODO
-# class rcn_reg(BaseRCN):
+# class ep_reg(BaseEP):
 
-class rcn_class(BaseRCN):
+class ep_class(BaseEP):
     def __init__(self, X, y,X_val=None,y_val=None, **kwargs):
         self.n_train = X.shape[0] 
         self.n_vars = X.shape[1]
@@ -409,7 +409,7 @@ class rcn_class(BaseRCN):
         self.model = nn.Sequential(*layers)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.lr)
         self.criterion = nn.CrossEntropyLoss()
-        self.run_base_rcn(X, y,X_val,y_val)
+        self.run_base_ep(X, y,X_val,y_val)
 
 
 

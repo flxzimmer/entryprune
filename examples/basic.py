@@ -1,5 +1,5 @@
  
-import relchanet
+import entryprune
 
 import numpy as np
 from sklearn.metrics import accuracy_score
@@ -35,7 +35,7 @@ args = {
 K = 10 
 
 # Select features
-mod = relchanet.rcn_class(X=X_train, y=y_train, relevant=K, **args)
+mod = entryprune.ep_class(X=X_train, y=y_train, relevant=K, **args)
 
 # get selected features
 selected_features = mod.ident_final
